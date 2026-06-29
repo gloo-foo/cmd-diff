@@ -1,6 +1,9 @@
 package command
 
-import "github.com/spf13/afero"
+import (
+	gloo "github.com/gloo-foo/framework"
+	"github.com/spf13/afero"
+)
 
 // diffUnifiedFlag enables unified diff output (-u). Default off.
 type diffUnifiedFlag bool
@@ -17,7 +20,7 @@ func (u diffUnifiedFlag) Configure(flags *flags) { flags.unified = u }
 type diffFs struct{ afero.Fs }
 
 // DiffFs selects the filesystem diff uses to open File positional arguments.
-func DiffFs(fs afero.Fs) diffFs { return diffFs{fs} }
+func DiffFs(fs afero.Fs) gloo.Switch[flags] { return diffFs{fs} }
 
 func (f diffFs) Configure(flags *flags) { flags.fs = f }
 
@@ -30,6 +33,6 @@ func (f diffFs) value() afero.Fs {
 }
 
 type flags struct {
-	unified diffUnifiedFlag
 	fs      diffFs
+	unified diffUnifiedFlag
 }

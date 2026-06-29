@@ -6,11 +6,11 @@ import (
 	"strings"
 	"testing"
 
+	gloo "github.com/gloo-foo/framework"
+	"github.com/gloo-foo/testable"
 	"github.com/spf13/afero"
 
 	command "github.com/gloo-foo/cmd-diff"
-	gloo "github.com/gloo-foo/framework"
-	"github.com/gloo-foo/testable"
 )
 
 // diff compares two inputs position by position (line N of input1 vs line N of
